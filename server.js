@@ -48,11 +48,33 @@ const upload = multer({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve index.html on root
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.post('/upload', (req, res) => {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      console.error('Multer Error:', err);
+      return res.status(400).json({ message: `Upload Error: ${err.message}` });
+    } else if (err) {
+      console.error('Unknown Upload Error:', err);
+      return res.status(400).json({ message: err.message || 'File upload failed.' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file was uploaded.' });
+    }
+
+    console.log('File uploaded successfully:', req.file.filename);
+    res.status(200).json({
+      message: 'File uploaded successfully!',
+      filename: req.file.filename
+    });
+  });
+});
+
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Uploading files to: ${uploadDir}`);
 });
