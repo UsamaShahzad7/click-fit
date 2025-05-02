@@ -95,14 +95,14 @@ $(document).ready(function () {
         formData.append('uploadedImage', files[0]);
 
         if (files.length > 1) {
-            uploadStatus.append('<p><span class="text-info">Note: Only the first selected image will be uploaded in this demo.</span></p>');
+            uploadStatus.html('<p><span class="text-info">Note: Only the first selected image will be uploaded in this demo.</span></p>');
         }
 
         uploadFile(formData);
     }
 
     function uploadFile(formData) {
-        uploadStatus.html('<span class="text-primary">Uploading... <i class="fas fa-spinner fa-spin"></i></span>');
+        uploadStatus.append('<span class="text-primary">Uploading... <i class="fas fa-spinner fa-spin"></i></span>');
         $.ajax({
             url: 'http://localhost:3000/upload', method: 'POST', data: formData,
             processData: false, contentType: false,
