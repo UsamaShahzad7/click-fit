@@ -8,3 +8,101 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/pexels-willpicturethis-1954524.jpg') no-repeat center center;
   background-size: cover;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse-button:hover {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes brandColorChange {
+  0% { color: #ffffff; }
+  50% { color: #0dcaf0; } 
+  100% { color: #ffffff; }
+}
+
+.animated-brand {
+  animation: brandColorChange 5s infinite;
+  font-weight: bold;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInBottom {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-left { animation: slideInLeft 0.8s ease-out; }
+.slide-in-right { animation: slideInRight 0.8s ease-out; }
+.slide-in-bottom { animation: slideInBottom 0.8s ease-out; }
+
+#drop-zone-label {
+  border: 2px dashed #ccc;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  display: block;
+}
+
+#drop-zone-label:hover {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+}
+
+#drop-zone-label.drag-over {
+  background-color: #e0e0e0;
+  border-color: #555;
+  border-style: solid;
+}
+
+#drop-zone-label i {
+  color: #6c757d;
+}
+
+#drop-zone-label .btn {
+ pointer-events: none; /* The label handles the click */
+}
+
+#preview-area img {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#api-spinner {
+ display: none;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+      height: 50vh;
+  }
+  .display-3 {
+      font-size: 2.5rem;
+  }
+  .lead {
+      font-size: 1rem;
+  }
+}
