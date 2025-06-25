@@ -46,9 +46,21 @@ const upload = multer({
   }
 }).single('uploadedImage');
 
+// Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Root route - serve index.html
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Catch-all handler: send back index.html for any non-API routes
+// This ensures that client-side routing works properly
+app.get('*', (req, res, next) => {
+  // Skip API routes
+  if (req.path.startsWith('/upload') || req.path.startsWith('/api')) {
+    return next();
+  }
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
